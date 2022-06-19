@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "python-template"
+name = "gator-client"
 version = "0.1.0"
-description = "Your project description goes here"
-authors = ["Your Name <you@example.com>"]
+description = "Web client for the Gator API"
+authors = ["Shon Verch <verchshon@gmail>"]
 license = "MIT"
 
 [tool.poetry.dependencies]

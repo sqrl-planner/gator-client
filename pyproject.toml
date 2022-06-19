@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Web client for the Gator API"
 authors = ["Shon Verch <verchshon@gmail>"]
 license = "MIT"
+packages = [
+    { include = "gator" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"

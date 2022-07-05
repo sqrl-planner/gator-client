@@ -10,7 +10,10 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-gator-models = {git = "https://github.com/sqrl-planner/gator-models.git", rev = "main"}
+urllib3 = "^1.26.9"
+certifi = "^2022.6.15"
+pymarshaler = {git = "https://github.com/sqrl-planner/pymarshaler"}
+gator-models = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 pydocstyle = "^6.1.1"

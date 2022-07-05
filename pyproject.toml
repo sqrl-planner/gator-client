@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "gator-client"
-version = "0.1.0"
+version = "0.0.0"  # placeholder for the real version, which is retrieved from git tags
 description = "Web client for the Gator API"
 authors = ["Shon Verch <verchshon@gmail>"]
 license = "MIT"
 packages = [
     { include = "gator" }
 ]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"

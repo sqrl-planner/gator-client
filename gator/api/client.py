@@ -1,7 +1,14 @@
 """Web client for the Gator API."""
-from typing import Any
+import json
+from types import SimpleNamespace
+from typing import Any, Optional
 from urllib.parse import urljoin
 
+import certifi
+import urllib3
+from pymarshaler.marshal import Marshal
+
+from gator.models.timetable import Course
 from gator.api.helpers import add_url_params
 
 
@@ -16,7 +23,13 @@ class GatorClient:
         """
         self._base_url = base_url
         self._encoding = encoding
+        self._connection_pool = urllib3.PoolManager(
+            cert_reqs='CERT_REQUIRED',
+            ca_certs=certifi.where()
+        )
+        self._marshaler = self._make_marshaler()
 
+    # Private methods
     def _compose_url(self, path: str, **params: Any) -> str:
         """Compose a URL for the given path.
 
@@ -34,3 +47,71 @@ class GatorClient:
         """
         url = urljoin(self._base_url, path)
         return add_url_params(url, **params)
+
+    def _request(self, method: str, path: str, **params: Any) \
+            -> tuple[Any, int]:
+        """Make a request to the Gator API.
+
+        Args:
+            method: The HTTP method to use for the request.
+            path: The path to the resource to request. This path is relative to
+                the base URL.
+            params: The parameters to include in the request given as a
+                dictionary of key-value pairs. If None, no parameters are
+                included in the request.
+
+        Returns:
+            A tuple containing the JSON response and the HTTP status code.
+        """
+        url = self._compose_url(path, **params)
+        response = self._connection_pool.urlopen(method.upper(), url)
+
+        body = json.loads(response.data.decode(self._encoding))
+        return body, response.status
+
+    def _construct_params(self, **kwargs: Any) -> dict:
+        """Construct a dictionary of parameters from the given keyword
+        arguments. If a keyword argument is None, it is not included in the
+        resultant parameter dictionary.
+
+        Args:
+            **kwargs: The keyword arguments to include in the parameters.
+
+        Returns:
+            A dictionary of parameters.
+        """
+        params = {}
+        for key, value in kwargs.items():
+            if value is not None:
+                params[key] = value
+        return params
+
+    @staticmethod
+    def _make_marshaler() -> Marshal:
+        """Return a marshaler for the Gator API models."""
+        return Marshal(resolve_enums_by='name')
+
+    # API methods
+    def get_courses(self, page_size: Optional[int] = None,
+                    last_id: Optional[str] = None) -> dict:
+        """GET /courses.
+
+        Args:
+            page_size: The number of items to return per page.
+            last_id: The id of the last item returned.
+        """
+        params = self._construct_params(
+            page_size=page_size,
+            last_id=last_id
+        )
+
+        body, status = self._request('GET', '/courses', **params)
+        if status == 200:
+            return SimpleNamespace(
+                courses=[self._marshaler.unmarshal(Course, c)
+                         for c in body.get('courses', [])],
+                last_id=body.get('last_id', None)
+            )
+        else:
+            # TODO: Handle errors
+            return body

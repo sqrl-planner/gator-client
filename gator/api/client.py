@@ -1,15 +1,13 @@
 """Web client for the Gator API."""
 import json
-from types import SimpleNamespace
 from typing import Any, Optional
 from urllib.parse import urljoin
 
 import certifi
 import urllib3
-from pymarshaler.marshal import Marshal
 
-from gator.models.timetable import Course
 from gator.api.helpers import add_url_params
+from gator.schemas.timetable import CourseSchema
 
 
 class GatorClient:
@@ -27,7 +25,6 @@ class GatorClient:
             cert_reqs='CERT_REQUIRED',
             ca_certs=certifi.where()
         )
-        self._marshaler = self._make_marshaler()
 
     # Private methods
     def _compose_url(self, path: str, **params: Any) -> str:
@@ -86,11 +83,6 @@ class GatorClient:
                 params[key] = value
         return params
 
-    @staticmethod
-    def _make_marshaler() -> Marshal:
-        """Return a marshaler for the Gator API models."""
-        return Marshal(resolve_enums_by='name')
-
     # API methods
     def get_courses(self, page_size: Optional[int] = None,
                     last_id: Optional[str] = None) -> dict:
@@ -105,13 +97,8 @@ class GatorClient:
             last_id=last_id
         )
 
-        body, status = self._request('GET', '/courses', **params)
-        if status == 200:
-            return SimpleNamespace(
-                courses=[self._marshaler.unmarshal(Course, c)
-                         for c in body.get('courses', [])],
-                last_id=body.get('last_id', None)
-            )
-        else:
-            # TODO: Handle errors
-            return body
+        body, _ = self._request('GET', '/courses', **params)
+        return CourseSchema().load(
+            body.get('courses', []),
+            many=True
+        )

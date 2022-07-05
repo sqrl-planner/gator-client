@@ -77,13 +77,15 @@ pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
 name = "gator-models"
-version = "1.0.1"
+version = "1.1.2"
 description = "MongoDB models for Gator API"
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
+marshmallow = ">=3.17.0,<4.0.0"
+marshmallow-enum = ">=1.5.1,<2.0.0"
 mongoengine = ">=0.20"
 
 [[package]]
@@ -93,6 +95,34 @@ description = "iniconfig: brain-dead simple config-ini parsing"
 category = "dev"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "marshmallow"
+version = "3.17.0"
+description = "A lightweight library for converting complex datatypes to and from native Python datatypes."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+packaging = ">=17.0"
+
+[package.extras]
+dev = ["pytest", "pytz", "simplejson", "mypy (==0.961)", "flake8 (==4.0.1)", "flake8-bugbear (==22.6.22)", "pre-commit (>=2.4,<3.0)", "tox"]
+docs = ["sphinx (==4.5.0)", "sphinx-issues (==3.0.1)", "alabaster (==0.7.12)", "sphinx-version-warning (==1.1.2)", "autodocsumm (==0.2.8)"]
+lint = ["mypy (==0.961)", "flake8 (==4.0.1)", "flake8-bugbear (==22.6.22)", "pre-commit (>=2.4,<3.0)"]
+tests = ["pytest", "pytz", "simplejson"]
+
+[[package]]
+name = "marshmallow-enum"
+version = "1.5.1"
+description = "Enum field for Marshmallow"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+marshmallow = ">=2.0.0"
 
 [[package]]
 name = "mccabe"
@@ -114,18 +144,10 @@ python-versions = ">=3.6"
 pymongo = ">=3.4,<5.0"
 
 [[package]]
-name = "orjson"
-version = "3.7.3"
-description = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -183,25 +205,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
-name = "pymarshaler"
-version = "0.4.0"
-description = "Package to marshal and unmarshal python objects"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-develop = false
-
-[package.dependencies]
-orjson = "*"
-python-dateutil = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/sqrl-planner/pymarshaler"
-reference = "master"
-resolved_reference = "dd657961cf9006ba42ca358da0b3be230890fb5c"
-
-[[package]]
 name = "pymongo"
 version = "4.1.1"
 description = "Python driver for MongoDB <http://www.mongodb.org>"
@@ -222,7 +225,7 @@ zstd = ["zstandard"]
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.8"
 
@@ -280,25 +283,6 @@ pytest = ">=5.0"
 dev = ["pre-commit", "tox", "pytest-asyncio"]
 
 [[package]]
-name = "python-dateutil"
-version = "2.8.2"
-description = "Extensions to the standard Python datetime module"
-category = "main"
-optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
-
-[package.dependencies]
-six = ">=1.5"
-
-[[package]]
-name = "six"
-version = "1.16.0"
-description = "Python 2 and 3 compatibility utilities"
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
-
-[[package]]
 name = "snowballstemmer"
 version = "2.2.0"
 description = "This package provides 29 stemmers for 28 languages generated from Snowball algorithms."
@@ -338,7 +322,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "5e287b557fd61d5f99951d392ea823354b123696dbe95fa08ce2cd8b12118ad2"
+content-hash = "b778f8305bcb292265186e106e4eea72672990a359ca23d0897c41f133274b34"
 
 [metadata.files]
 atomicwrites = [
@@ -409,12 +393,20 @@ flake8 = [
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
 ]
 gator-models = [
-    {file = "gator-models-1.0.1.tar.gz", hash = "sha256:0932dfb92c13f070d7f04c689c45bc92722f5cebddb4939c90712a85bf194e43"},
-    {file = "gator_models-1.0.1-py3-none-any.whl", hash = "sha256:f4eebe69def4310104da29f8f5d7e44aa5b1d7eead56470b6cd796a3fbb8f636"},
+    {file = "gator-models-1.1.2.tar.gz", hash = "sha256:5707ba4e2e1c124eb44597224ece2c966e8135e1c8b5d8e3bd7391d66d1a041f"},
+    {file = "gator_models-1.1.2-py3-none-any.whl", hash = "sha256:ceb8cfc22292aaa8c87c7d37c34f220e7987152cbe1db97cbf862d7fa669f6c5"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
+]
+marshmallow = [
+    {file = "marshmallow-3.17.0-py3-none-any.whl", hash = "sha256:00040ab5ea0c608e8787137627a8efae97fabd60552a05dc889c888f814e75eb"},
+    {file = "marshmallow-3.17.0.tar.gz", hash = "sha256:635fb65a3285a31a30f276f30e958070f5214c7196202caa5c7ecf28f5274bc7"},
+]
+marshmallow-enum = [
+    {file = "marshmallow-enum-1.5.1.tar.gz", hash = "sha256:38e697e11f45a8e64b4a1e664000897c659b60aa57bfa18d44e226a9920b6e58"},
+    {file = "marshmallow_enum-1.5.1-py2.py3-none-any.whl", hash = "sha256:57161ab3dbfde4f57adeb12090f39592e992b9c86d206d02f6bd03ebec60f072"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
@@ -423,45 +415,6 @@ mccabe = [
 mongoengine = [
     {file = "mongoengine-0.24.1-py3-none-any.whl", hash = "sha256:68878b65bcb3751debcba4342180a180161cdb5f46525027e622ad081dd44fac"},
     {file = "mongoengine-0.24.1.tar.gz", hash = "sha256:01baac85f408f5eefb6195c0afeae631e7fc6fab5cb221a7b46646f94227d6da"},
-]
-orjson = [
-    {file = "orjson-3.7.3-cp310-cp310-macosx_10_7_x86_64.whl", hash = "sha256:1cd9cd9bb9cee39aca4f7e1079cc3e180ffad0b13342ac3fabf5ff3caf7285bb"},
-    {file = "orjson-3.7.3-cp310-cp310-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:a4eb1ea1afe6494af75e61bf8bbca251e8e4883f1c235652e509e86e0eaf23b6"},
-    {file = "orjson-3.7.3-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:a9d68a29111d9e2e9ac45eb339ae4083a754fc9deba3270ef573c87c64e75e3b"},
-    {file = "orjson-3.7.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4d10459578c139f428adedff41a78afde7034e277979cbb67b2d0584ddaff320"},
-    {file = "orjson-3.7.3-cp310-cp310-manylinux_2_28_aarch64.whl", hash = "sha256:38cb1191aae1f62665750f2457d04a8d7b1d289745b1ff3617f665f24cbab3e7"},
-    {file = "orjson-3.7.3-cp310-cp310-manylinux_2_28_x86_64.whl", hash = "sha256:320c0ffe508a12e83631e8172c29f42af6ba52473f1c6afec0bc99831d3e7cd9"},
-    {file = "orjson-3.7.3-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:99b9c2ed45c06c77a990cd5d37bf43ac815fcb5cc36a2351629d270673ea4b94"},
-    {file = "orjson-3.7.3-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:4cb6ea393398e5665fd84f4bff11fff79fe42c40cc4b38afd8241b15aa72e2c3"},
-    {file = "orjson-3.7.3-cp310-none-win_amd64.whl", hash = "sha256:1b8391a4fb5783fc8cd96f9594d64524204569dec612689e64cabfb6075bffe1"},
-    {file = "orjson-3.7.3-cp37-cp37m-macosx_10_7_x86_64.whl", hash = "sha256:9e68c01d576aaf3d83b3a18a3d2139d2cbfebc415264d7054d37d7fd8292bd08"},
-    {file = "orjson-3.7.3-cp37-cp37m-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:863b7f13d1fd05b65ba4926f017b0d301d6b898db4ebcb19609af111f77a803c"},
-    {file = "orjson-3.7.3-cp37-cp37m-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:ae229eef7a5a418011627b283d7fe0316d05fef65e88ae6623eecd5c6c701726"},
-    {file = "orjson-3.7.3-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a9895be514b3aad76f81c739b7348c31f913971923ac71e0a35443abe6696a6d"},
-    {file = "orjson-3.7.3-cp37-cp37m-manylinux_2_28_aarch64.whl", hash = "sha256:6c59aec36cb77634dd218789bffa801f265a9522cf6311573ae4202a6888abca"},
-    {file = "orjson-3.7.3-cp37-cp37m-manylinux_2_28_x86_64.whl", hash = "sha256:6ca694b989da69d31f129992bc00310b704adcbde8b3a24b571d883d2783a8e1"},
-    {file = "orjson-3.7.3-cp37-cp37m-musllinux_1_1_aarch64.whl", hash = "sha256:e17adc831c2a909a31b732e59973b6162d969f2e742a7c2428e62cc5fd65e00e"},
-    {file = "orjson-3.7.3-cp37-cp37m-musllinux_1_1_x86_64.whl", hash = "sha256:c70e650324ce3efd65c9452c3e59c40f41e28a16a84ed4a56cb4ed84b4d788db"},
-    {file = "orjson-3.7.3-cp37-none-win_amd64.whl", hash = "sha256:c06d6162694a83ba2f3a5fdceca9f8a7b30cae78e6e9651c8bdfb33cae3b95a3"},
-    {file = "orjson-3.7.3-cp38-cp38-macosx_10_7_x86_64.whl", hash = "sha256:940184f159f6be00e2f4320fdeebe6b842228db26db679c7cad5654818643938"},
-    {file = "orjson-3.7.3-cp38-cp38-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:716c8f7eb39128067355bd1bc5e66156934d70295f5c62786a89af9c3f50c4d7"},
-    {file = "orjson-3.7.3-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:1594555a73670837a94a42ec21470d30a5cbe430bf1683f491b1f87270aaa305"},
-    {file = "orjson-3.7.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7592bc8c2009a7ee39ec1a022bb711f23bf74b9c49ffbe93479cdac16842b5ca"},
-    {file = "orjson-3.7.3-cp38-cp38-manylinux_2_28_aarch64.whl", hash = "sha256:5738ab3283e75953b2aba549ebe7061cb883b2fd2d281097009242b3936c0114"},
-    {file = "orjson-3.7.3-cp38-cp38-manylinux_2_28_x86_64.whl", hash = "sha256:95fd418e3e93305b728e056fa35096b70261b63ba6df404a8f6af5694b27de20"},
-    {file = "orjson-3.7.3-cp38-cp38-musllinux_1_1_aarch64.whl", hash = "sha256:ade22b22f2d4baafcdcac63a66893250b51e7601e16f2c93bab29b30d233c5ac"},
-    {file = "orjson-3.7.3-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:2efd7561e3a25bf381ee6410c4ca26f3425948074d394fae708bc1b7d2c09100"},
-    {file = "orjson-3.7.3-cp38-none-win_amd64.whl", hash = "sha256:b500e4b1a6e8d93e226c55848419146365b57000f0afb1766475cb0a5b913aac"},
-    {file = "orjson-3.7.3-cp39-cp39-macosx_10_7_x86_64.whl", hash = "sha256:6c7eca150d9d7dedf405d82c346105d6475e57789f3c3b4e0d12d59def94cb30"},
-    {file = "orjson-3.7.3-cp39-cp39-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:4205c32a003c732b4fa9c040cd5a0660d87d38a7a97eb8db559d0b22f66bade6"},
-    {file = "orjson-3.7.3-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:0a4d747a43c5c9240968f74737da9f9978840f9b5c86bb578919c4e1adb05142"},
-    {file = "orjson-3.7.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7406f8d163e7e7f358b34016e828f6b5ce15e6f7f0de3f82089a26ba1b41d75e"},
-    {file = "orjson-3.7.3-cp39-cp39-manylinux_2_28_aarch64.whl", hash = "sha256:8ef7696c3771dd11df5a45922794ad17b0421bfb5ba07832b960b653225ca739"},
-    {file = "orjson-3.7.3-cp39-cp39-manylinux_2_28_x86_64.whl", hash = "sha256:b2dadb4c0e2c4aa81f5bf20d58bd3b742e55c1142dd2bde5707749e77e3a9ad1"},
-    {file = "orjson-3.7.3-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:9f2248d54957a63cf861285ea46f89ae79853e84ee26593560e8d53892a6b652"},
-    {file = "orjson-3.7.3-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:2cc17eb506613dda54061d956c416720dcd660ef6291ff94a88dcbb857933b2d"},
-    {file = "orjson-3.7.3-cp39-none-win_amd64.whl", hash = "sha256:837bcaefb9ba61d40587d25052e3c74652e853108af6e2bc172c001b5f2ffd3e"},
-    {file = "orjson-3.7.3.tar.gz", hash = "sha256:6998ff27b9b9aaa4906f6ad40c6c973339c772143f56e8e920f4843fd6c04e75"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
@@ -487,7 +440,6 @@ pyflakes = [
     {file = "pyflakes-2.4.0-py2.py3-none-any.whl", hash = "sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e"},
     {file = "pyflakes-2.4.0.tar.gz", hash = "sha256:05a85c2872edf37a4ed30b0cce2f6093e1d0581f8c19d7393122da7e25b2b24c"},
 ]
-pymarshaler = []
 pymongo = [
     {file = "pymongo-4.1.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:eff9818b7671a55f1ce781398607e0d8c304cd430c0581fbe15b868a7a371c27"},
     {file = "pymongo-4.1.1-cp310-cp310-manylinux1_i686.whl", hash = "sha256:7507439cd799295893b5602f438f8b6a0f483efb00720df1aa33a39102b41bcf"},
@@ -588,14 +540,6 @@ pytest-cov = [
 pytest-mock = [
     {file = "pytest-mock-3.8.1.tar.gz", hash = "sha256:2c6d756d5d3bf98e2e80797a959ca7f81f479e7d1f5f571611b0fdd6d1745240"},
     {file = "pytest_mock-3.8.1-py3-none-any.whl", hash = "sha256:d989f11ca4a84479e288b0cd1e6769d6ad0d3d7743dcc75e460d1416a5f2135a"},
-]
-python-dateutil = [
-    {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
-    {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
-]
-six = [
-    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
-    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 snowballstemmer = [
     {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a"},

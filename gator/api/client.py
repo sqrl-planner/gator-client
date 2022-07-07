@@ -1,7 +1,7 @@
 """Web client for the Gator API."""
 import json
 from types import SimpleNamespace
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from urllib.parse import (ParseResult, parse_qsl, quote_plus, unquote,
                           urlencode, urljoin, urlparse)
 
@@ -87,11 +87,17 @@ class GatorClient:
         return params
 
     # API methods
-    def get_courses(self, page_size: Optional[int] = None,
+    def get_courses(self, ids: Optional[Union[list[str], str]] = None,
+                    page_size: Optional[int] = None,
                     last_id: Optional[str] = None) -> SimpleNamespace:
         """GET /courses.
 
         Args:
+            ids: The ids of the courses to retrieve, either as a list of
+                strings or a single string of comma-separated ids. If
+                specified, returns only those courses with the given ids in the
+                order specified. Ignore courses that could not be found.
+                Otherwise, return all courses, in no particular order.
             page_size: The number of items to return per page.
             last_id: The id of the last item returned.
 
@@ -100,9 +106,13 @@ class GatorClient:
                 - courses: A list of Course objects.
                 - last_id: The id of the last item returned.
         """
+        if ids is not None and isinstance(ids, list):
+            ids = ','.join(ids)
+
         params = self._construct_params(
             page_size=page_size,
-            last_id=last_id
+            last_id=last_id,
+            ids=ids
         )
 
         body, _ = self._request('GET', '/courses', **params)

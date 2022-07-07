@@ -24,9 +24,9 @@ def gator_client(httpserver: HTTPServer) -> None:
 ###############################################################################
 
 
-def test_get_courses(gator_client: GatorClient, httpserver: HTTPServer) -> None:
-    """Test the get_courses API method."""
-    courses_fixture = load_json_fixture('courses.json')
+def test_get_courses_all(gator_client: GatorClient, httpserver: HTTPServer) -> None:
+    """Test the get_courses API method with no ids parameter."""
+    courses_fixture = load_json_fixture('courses_all.json')
     httpserver.expect_request('/courses', method='GET').respond_with_json(
         courses_fixture)
 
@@ -36,6 +36,28 @@ def test_get_courses(gator_client: GatorClient, httpserver: HTTPServer) -> None:
     )
 
     assert gator_client.get_courses() == expected
+
+
+def test_get_courses_some(gator_client: GatorClient, httpserver: HTTPServer) -> None:
+    """Test the get_courses API method with ids parameter."""
+    courses_fixture = load_json_fixture('courses_some.json')
+    course_ids = [c['id'] for c in courses_fixture['courses']]
+
+    httpserver.expect_request(
+        '/courses',
+        query_string=dict(ids=','.join(course_ids)),
+        method='GET'
+    ).respond_with_json(courses_fixture)
+
+    expected = SimpleNamespace(
+        courses=CourseSchema(many=True).load(courses_fixture['courses']),
+        last_id=courses_fixture['last_id'],
+    )
+
+    # Test comma-separated input
+    assert gator_client.get_courses(ids=','.join(course_ids)) == expected
+    # Test list input
+    assert gator_client.get_courses(ids=course_ids) == expected
 
 
 def test_get_course(gator_client: GatorClient, httpserver: HTTPServer) -> None:

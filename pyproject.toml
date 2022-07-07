@@ -2,7 +2,7 @@
 name = "gator-client"
 version = "0.0.0"  # placeholder for the real version, which is retrieved from git tags
 description = "Web client for the Gator API"
-authors = ["Shon Verch <verchshon@gmail>"]
+authors = ["Shon Verch <verchshon@gmail.com>"]
 license = "MIT"
 packages = [
     { include = "gator" }

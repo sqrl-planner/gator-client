@@ -13,6 +13,7 @@ from gator.schemas.timetable import CourseSchema, OrganisationSchema
 
 class GatorClient:
     """Web client for the Gator API."""
+
     def __init__(self, base_url: str, encoding: str = 'utf8') -> None:
         """Initialize the client.
 
@@ -68,9 +69,10 @@ class GatorClient:
         return body, response.status
 
     def _construct_params(self, **kwargs: Any) -> dict:
-        """Construct a dictionary of parameters from the given keyword
-        arguments. If a keyword argument is None, it is not included in the
-        resultant parameter dictionary.
+        """Construct a dictionary of parameters from keyword arguments.
+
+        If a keyword argument is None, it is not included in the resultant
+        parameter dictionary.
 
         Args:
             **kwargs: The keyword arguments to include in the parameters.

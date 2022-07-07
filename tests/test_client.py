@@ -12,6 +12,7 @@ from tests.helpers import load_json_fixture
 # Setup fixtures for mocking Gator API calls.
 ###############################################################################
 
+
 @pytest.fixture
 def gator_client(httpserver: HTTPServer) -> None:
     """Fixture that configures a GatorClient for testing."""

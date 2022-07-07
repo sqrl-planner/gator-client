@@ -13,6 +13,7 @@ from gator.schemas.timetable import CourseSchema, OrganisationSchema
 
 class GatorClient:
     """Web client for the Gator API."""
+
     def __init__(self, base_url: str, encoding: str = 'utf8') -> None:
         """Initialize the client.
 
@@ -123,29 +124,29 @@ class GatorClient:
         return CourseSchema().load(body)
 
     def get_organisations(self, page_size: Optional[int] = None,
-                            last_id: Optional[str] = None) -> SimpleNamespace:
-            """GET /organisations.
+                          last_id: Optional[str] = None) -> SimpleNamespace:
+        """GET /organisations.
 
-            Args:
-                page_size: The number of items to return per page.
-                last_id: The id of the last item returned.
+        Args:
+            page_size: The number of items to return per page.
+            last_id: The id of the last item returned.
 
-            Returns:
-                A SimpleNamespace with two attributes:
-                    - organisations: A list of Organisation objects.
-                    - last_id: The id of the last item returned.
-            """
-            params = self._construct_params(
-                page_size=page_size,
-                last_id=last_id
-            )
+        Returns:
+            A SimpleNamespace with two attributes:
+                - organisations: A list of Organisation objects.
+                - last_id: The id of the last item returned.
+        """
+        params = self._construct_params(
+            page_size=page_size,
+            last_id=last_id
+        )
 
-            body, _ = self._request('GET', '/organisations', **params)
-            body['organisations'] = OrganisationSchema(many=True).load(
-                body['organisations']
-            )
+        body, _ = self._request('GET', '/organisations', **params)
+        body['organisations'] = OrganisationSchema(many=True).load(
+            body['organisations']
+        )
 
-            return SimpleNamespace(**body)
+        return SimpleNamespace(**body)
 
     def get_organisation(self, code: str) -> Organisation:
         """GET /organisations/{code}.

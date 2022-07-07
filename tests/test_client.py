@@ -1,11 +1,11 @@
 """Test the gator.api.client module."""
 from types import SimpleNamespace
+
 import pytest
+from gator.schemas.timetable import CourseSchema, OrganisationSchema
 from pytest_httpserver import HTTPServer
 
 from gator.api.client import GatorClient
-from gator.schemas.timetable import CourseSchema, OrganisationSchema
-
 from tests.helpers import load_json_fixture
 
 ###############################################################################

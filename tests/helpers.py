@@ -1,7 +1,7 @@
 """Helper methods for testing."""
 import json
 from pathlib import Path
-from typing import Union, Any
+from typing import Any, Union
 
 
 def load_json_fixture(fp: Union[str, Path]) -> Any:

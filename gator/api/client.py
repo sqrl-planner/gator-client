@@ -2,11 +2,11 @@
 import json
 from types import SimpleNamespace
 from typing import Any, Optional
-from urllib.parse import urlencode, unquote, urlparse, parse_qsl, ParseResult, quote_plus, urljoin
+from urllib.parse import (ParseResult, parse_qsl, quote_plus, unquote,
+                          urlencode, urljoin, urlparse)
 
 import certifi
 import urllib3
-
 from gator.models.timetable import Course, Organisation
 from gator.schemas.timetable import CourseSchema, OrganisationSchema
 

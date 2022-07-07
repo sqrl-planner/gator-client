@@ -15,7 +15,7 @@ def load_json_fixture(fp: Union[str, Path]) -> Any:
         The JSON fixture.
     """
     if not Path(fp).is_absolute():
-        fp = Path(__file__).parent / 'fixtures' / fp
+        fp = Path(__file__).parent.parent / 'fixtures' / fp
 
     with open(fp) as f:
         return json.load(f)

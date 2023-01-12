@@ -1,29 +1,37 @@
 [tool.poetry]
 name = "gator-client"
 version = "0.0.0"  # placeholder for the real version, which is retrieved from git tags
-description = "Web client for the Gator API"
+description = "A web client for the Gator API"
 authors = ["Shon Verch <verchshon@gmail.com>"]
 license = "MIT"
-packages = [
-    { include = "gator" }
-]
 readme = "README.md"
+
+packages = [
+    { include = "gator", from = "src" }
+]
+include = [
+    { path = "tests", format = "sdist" }
+]
+exclude = [
+    "**/*.pyc",
+    "**/*.pyi",
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 urllib3 = "^1.26.9"
 certifi = "^2022.6.15"
-pytest-httpserver = "^1.0.4"
-gator-models = "^1.1.3"
+gator-core = "^1.1.4"
 
 [tool.poetry.dev-dependencies]
-pydocstyle = "^6.1.1"
-autopep8 = "^1.6.0"
-flake8 = "^4.0.1"
+pre-commit = "^2.20.0"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 pytest-mock = "^3.7.0"
-isort = "^5.10.1"
+pytest-httpserver = "^1.0.4"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.21.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

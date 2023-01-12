@@ -1,0 +1,105 @@
+{
+    "organisations": [
+        {
+            "campus": "ST_GEORGE",
+            "code": "ANA",
+            "name": "Anatomy (ANA)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "ANT",
+            "name": "Anthropology (ANT) (ARH) (HAJ) (JAH) (JAL) (JAR) (JGA)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "ARCLA",
+            "name": "Architecture, Landscape & Design, Faculty of (FOR) (ARC)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "ASABS",
+            "name": "Indigenous Studies (INS) (JFP) (JIG) (JPI)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "ASI",
+            "name": "Contemporary Asian Studies (CAS) (JHA) (JPA) (SAS)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "ASIP",
+            "name": "Arts & Science Internship Program (INT) (PDC)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "AST",
+            "name": "Astronomy & Astrophysics (AST) (JCA) (PLN)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "BCH",
+            "name": "Biochemistry (BCH)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CERES",
+            "name": "European Studies (EUR) (HUN) (MGR) (JRA) "
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CHM",
+            "name": "Chemistry (CHM) (JCC) (JSC) (NUS) (PHC)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CINE",
+            "name": "Cinema Studies (CIN)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CITA",
+            "name": "Canadian Institute for Theoretical Astrophysics (CTA)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CLAS",
+            "name": "Classics (CLA) (GRK) (LAT)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "COMPG",
+            "name": "Rotman Commerce (RSM) (MGT)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CRIM",
+            "name": "Criminology and Sociolegal Studies, Centre for (CRI)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CSB",
+            "name": "Cell and Systems Biology (CSB) (BCB) (BIO) (CJH)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CSC",
+            "name": "Computer Science (CSC) (COG) (ECE) (JCC) (JSC)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "CSUS",
+            "name": "American Studies (AMS) (USA)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "DRAMA",
+            "name": "Drama, Theatre and Performance Studies, Centre for (DRM) (JDC) (JIA)"
+        },
+        {
+            "campus": "ST_GEORGE",
+            "code": "DTS",
+            "name": "Diaspora and Transnational Studies (DTS)"
+        }
+    ],
+    "last_id": "DTS"
+}

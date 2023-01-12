@@ -1,5 +1,5 @@
 # Gator Client
-Web client for the [Gator](https://github.com/sqrl-planner/gator) API.
+A web client for the [Gator](https://github.com/sqrl-planner/gator) API.
 
 ## Package manager
 gator-client uses the [poetry](https://python-poetry.org/) package manager to manage its dependencies. To install the dependencies, run the following command:
